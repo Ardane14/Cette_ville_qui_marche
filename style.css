@@ -1,0 +1,124 @@
+/* ==================================================
+   1. Reset & Global
+================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #ffffff;
+  color: #000000;
+
+  font-family: "Georgia", "Times New Roman", serif;
+  font-size: 16px;
+  line-height: 1.6;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+
+/* ==================================================
+   2. Page layout
+================================================== */
+
+.page {
+  max-width: 800px;
+  margin: 60px auto;
+  padding: 0 40px;
+}
+
+
+/* ==================================================
+   3. Mast section (conteneur narratif)
+================================================== */
+
+.mast {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.mast__header {
+  position: relative;
+  z-index: 1;
+}
+
+
+/* ==================================================
+   4. Typography
+================================================== */
+
+.mast__title {
+  font-size: 1em;
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin: 0 0 1em;
+}
+
+.mast__text {
+  font-size: 1em;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  margin: 0;
+}
+
+
+/* ==================================================
+   5. Separator
+================================================== */
+
+.sep {
+  border: none;
+  width: 3em;
+  height: 1px;
+  margin: 1.5em 0;
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
+
+/* ==================================================
+   6. Letter animations
+================================================== */
+
+.mast__title span,
+.mast__text span {
+  animation: letter-glow 0.4s ease both;
+}
+
+/* Titre */
+.mast__title span:nth-child(n) {
+  animation-delay: calc(var(--i) * 0.05s);
+}
+
+/* Texte */
+.mast__text span:nth-child(n) {
+  animation-delay: calc(var(--i) * 0.05s);
+}
+
+
+
+/* ==================================================
+   7. Keyframes
+================================================== */
+
+@keyframes letter-glow {
+  0% {
+    opacity: 0;
+  }
+
+  60% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.75;
+  }
+}
