@@ -1,18 +1,11 @@
+// ===== JS SPANIZE =====
+document.querySelectorAll('.js-spanize').forEach(el => {
+    const text = el.textContent;
+    const spanned = text.split('').map((char, i) => `<span style="--i:${i}">${char}</span>`).join('');
+    el.innerHTML = spanned;
+});
 
-(function ($) {
-  $('.js-spanize').each(function () {
-    const text = $(this).text();
-    const letters = text.split('');
-
-    const spanned = letters
-      .map((char, i) => `<span style="--i:${i}">${char}</span>`)
-      .join('');
-
-    $(this).html(spanned);
-  });
-})(jQuery);
-
-
+// ===== CAROUSEL TASK =====
 const tasks = [
   'Nabosani te',
   'I remember.',
@@ -25,59 +18,62 @@ const task = document.getElementById('task');
 let i = 0;
 
 function changeTask() {
-  // animation sortie
-  task.classList.remove('pre-animation');
-  task.classList.remove('post-animation');
+    if (!task) return;
 
-  // force reflow pour relancer l'animation
-  void task.offsetWidth;
+    // Sortie
+    task.classList.remove('pre-animation', 'post-animation');
+    void task.offsetWidth; // force reflow
+    task.classList.add('post-animation');
 
-  task.classList.add('post-animation');
+    setTimeout(() => {
+        task.textContent = tasks[i];
+        i = (i + 1) % tasks.length;
 
-  setTimeout(() => {
-    task.textContent = tasks[i];
-    i = (i + 1) % tasks.length;
-
-    task.classList.remove('post-animation');
-    void task.offsetWidth;
-    task.classList.add('pre-animation');
-  }, 600);
+        task.classList.remove('post-animation');
+        void task.offsetWidth;
+        task.classList.add('pre-animation');
+    }, 600);
 }
 
+// initialisation
+if (task) {
+    task.textContent = tasks[0];
+    task.classList.add('pre-animation');
+    setInterval(changeTask, 2000);
+}
+
+// =====================
+// HAMBURGER / POPUP
+// =====================
 const burger = document.getElementById('hamburger');
 const popup = document.getElementById('popup');
 
-burger.addEventListener('click', () => {
-    burger.classList.toggle('is-open');
-    burger.classList.toggle('is-closed');
-    popup.classList.toggle('active');
-});
+if (burger && popup) {
+    burger.addEventListener('click', () => {
+        burger.classList.toggle('is-open');
+        burger.classList.toggle('is-closed');
+        popup.classList.toggle('active');
+    });
+}
 
-
-// initialisation
-task.textContent = tasks[0];
-task.classList.add('pre-animation');
-
-setInterval(changeTask, 2000);
+// =====================
+// SCROLL ANIMATION BACKGROUND + SUN TEXT
+// =====================
 const sunText = document.querySelector('.sun-text');
 
 window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;
     const maxScroll = window.innerHeight;
 
-    // Progress from 0 → 1
     const progress = Math.min(scrollY / maxScroll, 1);
 
-    // Night → sunrise colors
     const r = 20 + progress * (230 - 20);
     const g = 20 + progress * (215 - 20);
     const b = 30 + progress * (185 - 30);
 
     document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
 
-    // Make text appear
-    if (progress > 0.6) {
-        sunText.style.opacity = 1;
+    if (sunText) {
+        sunText.style.opacity = progress > 0.6 ? 1 : 0;
     }
 });
-
