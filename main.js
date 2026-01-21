@@ -1,0 +1,36 @@
+const tasks = [
+  'Nabosani te',
+  'I remember.',
+  'Mwen sonje.',
+  'Me acuerdo.',
+  'Je me souviens.',
+];
+
+const task = document.getElementById('task');
+let i = 0;
+
+function changeTask() {
+  // animation sortie
+  task.classList.remove('pre-animation');
+  task.classList.remove('post-animation');
+
+  // force reflow pour relancer l'animation
+  void task.offsetWidth;
+
+  task.classList.add('post-animation');
+
+  setTimeout(() => {
+    task.textContent = tasks[i];
+    i = (i + 1) % tasks.length;
+
+    task.classList.remove('post-animation');
+    void task.offsetWidth;
+    task.classList.add('pre-animation');
+  }, 600);
+}
+
+// initialisation
+task.textContent = tasks[0];
+task.classList.add('pre-animation');
+
+setInterval(changeTask, 2000);
