@@ -1,0 +1,45 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: rgb(20, 20, 30); /* night */
+    transition: background-color 0.2s linear;
+}
+
+/* Big empty space so scrolling is possible */
+.intro {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #eee;
+    font-size: 3rem;
+}
+
+/* Text area */
+.text-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* The sunrise sentence */
+.sun-text {
+    font-size: 2.5rem;
+    color: #f6e3b4;
+    opacity: 0;
+    transition: opacity 1s ease;
+
+    /* Glow */
+    text-shadow:
+        0 0 12px rgba(255, 200, 120, 0.6),
+        0 0 30px rgba(255, 200, 120, 0.35),
+
+        /* Readability shadow */
+        0 4px 10px rgba(0, 0, 0, 0.35);
+
+}
+
+body {
+    height: 200vh;
+}
