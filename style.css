@@ -1,23 +1,36 @@
+/* ===== BASE ===== */
 body {
-    background-color: #F5F5F5;
     margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: rgb(20, 20, 30); /* night */
+    transition: background-color 0.2s linear;
 }
 
-.container {
-    display: flex;
+/* ===== INTRO (plein écran) ===== */
+.intro {
     height: 100vh;
     width: 100vw;
+    color: white;
 }
 
+/* Layout principal */
+.container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+/* ===== TITRE VERTICAL ===== */
 .side-title {
     writing-mode: vertical-rl;
     transform: rotate(180deg);
+
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
 
-    color: #111;
+    padding: 2rem;
 }
 
 .side-title h1 {
@@ -28,54 +41,61 @@ body {
 }
 
 .side-title h3 {
+    margin-top: 1.5rem;
     letter-spacing: 0.1em;
     opacity: 0.7;
 }
 
+/* ===== CAROUSEL ===== */
 .task {
-    display: flex;
     flex: 1;
-    height: 100%;
+
+    display: flex;
     justify-content: center;
     align-items: center;
+
     font-size: clamp(2rem, 5vw, 4rem);
     font-weight: 300;
-    color: #111;
-  }
-  
-  .pre-animation {
-    animation-name: from-bottom;
-    animation-duration: 0.6s;
-  }
-  
-  .post-animation {
-    animation-name: to-top;
-    animation-duration: 0.6s;
-  }
+
+    min-width: 12ch;
+    white-space: nowrap;
+}
+
+/* ===== TEXTE SCROLL ===== */
+.text-section {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sun-text {
+    font-size: 2.5rem;
+    color: #ece3cb;
+    opacity: 0;
+    transition: opacity 1s ease;
+
+    text-shadow:
+        0 0 12px rgba(255, 200, 120, 0.6),
+        0 0 30px rgba(255, 200, 120, 0.35),
+        0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
+/* ===== ANIMATIONS ===== */
+.pre-animation {
+    animation: from-bottom 0.6s forwards;
+}
+
+.post-animation {
+    animation: to-top 0.6s forwards;
+}
 
 @keyframes to-top {
-    from {
-      transform: translateY(0);
-      opacity: 1;
-    }
-    to {
-      transform: translateY(-10px);
-      opacity: 0;
-    }
+    from { transform: translateY(0); opacity: 1; }
+    to { transform: translateY(-10px); opacity: 0; }
 }
 
 @keyframes from-bottom {
-    from {
-      transform: translateY(10px);
-      opacity: 0;
-    }
-    to {
-      transform: translateY(0);
-      opacity: 1;
-    }
+    from { transform: translateY(10px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
 }
-
-/* ===================== */
-/* 📱 MOBILE & TABLETTE */
-/* ===================== */
-
