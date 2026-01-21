@@ -173,6 +173,69 @@ body {
     white-space: nowrap;
 }
 
+/* ===== BUTTON ===== */
+.hamburglar {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    z-index: 1001;
+
+    width: 32px;
+    height: 24px;
+    cursor: pointer;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.hamburglar span {
+    height: 3px;
+    width: 100%;
+    background: white;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* OPEN STATE → CROIX */
+.hamburglar.is-open span:nth-child(1) {
+    transform: translateY(10px) rotate(45deg);
+}
+
+.hamburglar.is-open span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburglar.is-open span:nth-child(3) {
+    transform: translateY(-10px) rotate(-45deg);
+}
+
+/* ===== POPUP ===== */
+.popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(20, 20, 30, 0.95);
+    z-index: 1000;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.popup.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.popup-content {
+    color: white;
+    font-size: 2rem;
+}
+
+
 /* ===== TEXTE SCROLL ===== */
 .text-section {
     height: 100vh;

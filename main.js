@@ -44,6 +44,16 @@ function changeTask() {
   }, 600);
 }
 
+const burger = document.getElementById('hamburger');
+const popup = document.getElementById('popup');
+
+burger.addEventListener('click', () => {
+    burger.classList.toggle('is-open');
+    burger.classList.toggle('is-closed');
+    popup.classList.toggle('active');
+});
+
+
 // initialisation
 task.textContent = tasks[0];
 task.classList.add('pre-animation');
