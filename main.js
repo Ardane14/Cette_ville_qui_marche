@@ -158,22 +158,3 @@ window.addEventListener('scroll', () => {
     });
 });
 
-const bgPhoto = document.querySelector('.route117');
-const triggerSection = document.querySelector('.route117-section');
-
-window.addEventListener('scroll', () => {
-  if (!bgPhoto || !triggerSection) return;
-
-  const sectionTop = triggerSection.offsetTop;
-  const sectionHeight = triggerSection.offsetHeight;
-  const scrollY = window.scrollY;
-  const windowHeight = window.innerHeight;
-
-  const start = sectionTop - windowHeight;
-  const end = sectionTop + sectionHeight * 0.5;
-
-  let progress = (scrollY - start) / (end - start);
-  progress = Math.min(Math.max(progress, 0), 1);
-
-  bgPhoto.style.opacity = progress;
-});
