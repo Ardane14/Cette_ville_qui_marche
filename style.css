@@ -1,9 +1,56 @@
+@font-face {
+  font-family: "Cormorant";
+  src: url("../fonts/Cormorant/Cormorant-VariableFont_wght.ttf") format("truetype");
+  font-weight: 300 700; /* variable font */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Libre Baskerville";
+  src: url("../fonts/Libre_Baskerville/LibreBaskerville-VariableFont_wght") format("truetype");
+  font-weight: 300 700; /* variable font */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat/Montserrat-VariableFont_wght") format("truetype");
+  font-weight: 300 700; /* variable font */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Playfair Display";
+  src: url("../fonts/Playfair_Display/PlayfairDisplay-VariableFont_wght") format("truetype");
+  font-weight: 300 700; /* variable font */
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Raleway";
+  src: url("../fonts/Raleway/Raleway-VariableFont_wght") format("truetype");
+  font-weight: 300 700; /* variable font */
+  font-style: normal;
+  font-display: swap;
+}
+
+
 /* ===== BASE ===== */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
     background-color: rgb(20, 20, 30); /* night */
     transition: background-color 0.2s linear;
+
+    -webkit-font-smoothing: antialiased; 
+    -moz-osx-font-smoothing: grayscale; 
+    text-rendering: optimizeLegibility;
+
+    
 }
 
 /* ===== INTRO (plein écran) ===== */
@@ -163,6 +210,12 @@ body {
         0 4px 10px rgba(0, 0, 0, 0.35);
 }
 
+.align-title {
+  max-width: 88ch;
+  padding: 0 0.5ch;
+  text-align: left;
+}
+
 /* ===== ANIMATIONS ===== */
 .pre-animation {
     animation: from-bottom 0.6s forwards;
@@ -216,20 +269,25 @@ body {
   z-index: 1;
 }
 
+
+
+
 .js-spanize span {
-    display: inline-block;
-    opacity: 0;
-    transform: translateY(1em);
-    animation: spanize 0.6s forwards;
-    animation-delay: calc(var(--i) * 0.05s);
+  display: inline;
+  opacity: 0;
+  animation: spanize 0.6s forwards;
+  animation-delay: calc(var(--i) * 0.03s);
 }
 
 @keyframes spanize {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
+
 
 
 
@@ -245,11 +303,34 @@ body {
 }
 
 .mast__text {
-  font-size: 1em;
-  line-height: 1.6;
-  white-space: pre-wrap;
-  margin: 0;
+  max-width: 88ch;
+  margin: 6rem auto;
+  padding: 0 2ch;
+
+  font-family: "Cormorant", Georgia, serif;
+  line-height: 1.8;
+  letter-spacing: 0.01em;
+  font-size: 1.35rem;
+    color: #ffffff;
+    opacity: 0;
+    transition: opacity 1s ease;
+
+    text-shadow:
+        0 0 12px rgba(255, 200, 120, 0.6),
+        0 0 30px rgba(255, 200, 120, 0.35),
+        0 4px 10px rgba(0, 0, 0, 0.35);
+
+  white-space: pre-line;
+
+  hyphens: none;
+  word-break: normal;
+  overflow-wrap: normal;
+
+  text-align: left;
+  animation: text-fade-up 0.8s ease both;
 }
+
+
 
 /* ==================================================
    5. Separator
@@ -295,5 +376,16 @@ body {
 
   100% {
     opacity: 0.75;
+  }
+}
+
+@keyframes text-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(0.5em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
