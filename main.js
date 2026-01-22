@@ -123,3 +123,42 @@ window.addEventListener('scroll', () => {
         sunText.style.opacity = progress > 0.6 ? 1 : 0;
     }
 });
+
+const bus = document.querySelector('.bus');
+const section = document.querySelector('.bus-section');
+const lines = document.querySelectorAll('.line');
+
+window.addEventListener('scroll', () => {
+    if (!bus || !section) return;
+
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+    const scrollY = window.scrollY;
+
+    const rawProgress =
+        (scrollY - sectionTop) /
+        (sectionHeight - window.innerHeight);
+
+    const progress = Math.min(Math.max(rawProgress, 0), 1);
+
+    const startX = -400;
+    const endX = window.innerWidth * 0.8;
+    const busX = startX + progress * (endX - startX);
+
+    bus.style.transform = `translateX(${busX}px) translateY(-50%)`;
+
+    const busRect = bus.getBoundingClientRect();
+
+    lines.forEach(line => {
+        const lineRect = line.getBoundingClientRect();
+
+        const overlaps =
+            busRect.left < lineRect.right &&
+            busRect.right > lineRect.left &&
+            busRect.top < lineRect.bottom &&
+            busRect.bottom > lineRect.top;
+
+        line.style.opacity = overlaps ? 1 : 0;
+    });
+});
+
