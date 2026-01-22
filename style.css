@@ -218,8 +218,12 @@ body {
 .poem {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  row-gap: 0.5rem;
+  row-gap: 1rem;
   max-width: 100%;
+}
+
+.row {
+  text-align: left;
 }
 
 /* chaque ligne occupe une colonne différente */
