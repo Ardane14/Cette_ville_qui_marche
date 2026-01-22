@@ -1,11 +1,52 @@
-// ===== JS SPANIZE =====
+// =====================
+// JS SPANIZE
+// =====================
 document.querySelectorAll('.js-spanize').forEach(el => {
     const text = el.textContent;
     const spanned = text.split('').map((char, i) => `<span style="--i:${i}">${char}</span>`).join('');
     el.innerHTML = spanned;
 });
 
-// ===== CAROUSEL TASK =====
+// =====================
+// SPANIZE ON SCROLL
+// =====================
+const spanizeElements = document.querySelectorAll('.js-spanize');
+
+const observer = new IntersectionObserver(
+    (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+
+                // Empêche de rejouer l'animation
+                if (el.dataset.spanized) return;
+
+                const text = el.textContent;
+                el.innerHTML = text
+                    .split('')
+                    .map((char, i) => {
+                        const safeChar = char === ' ' ? '&nbsp;' : char;
+                        return `<span style="--i:${i}">${safeChar}</span>`;
+                    })
+                    .join('');
+
+                el.dataset.spanized = 'true';
+                observer.unobserve(el);
+            }
+        });
+    },
+    {
+        threshold: 0.3
+    }
+);
+
+spanizeElements.forEach(el => observer.observe(el));
+
+
+
+// =====================
+// CAROUSEL TASK 
+// =====================
 const tasks = [
   'Nabosani te',
   'I remember.',
