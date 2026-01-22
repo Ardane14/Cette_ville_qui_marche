@@ -40,6 +40,54 @@ body {
 
 }
 
-body {
-    height: 200vh;
+.bus-section {
+    height: 300vh;           /* scroll = time */
+    position: relative;
 }
+
+.bus-track {
+    position: sticky;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 260px;
+}
+
+/* Text */
+.poem {
+    position: relative;
+    padding: 0 120px;
+    z-index: 2;
+}
+
+.line {
+    font-size: 1.6rem;
+    margin: 35px 0;
+    opacity: 0;
+    transition: opacity 0.1s linear;
+    color: #2b2b2b;
+    outline: 1px dashed blue;
+}
+
+/* Author-like positioning */
+.line-1 { text-align: left; }
+.line-2 { text-align: center; }
+.line-3 { text-align: center; margin-left: 200px; }
+.line-4 { text-align: right; margin-right: 150px; }
+.line-5 { text-align: right; }
+
+/* Bus */
+.bus {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-300px, -50%);
+
+    width: 260px;
+    height: 500px;
+    background-color: #2b2b2b;
+    border-radius: 20px;
+
+    z-index: 1;
+    outline: 2px solid red;
+}
+
