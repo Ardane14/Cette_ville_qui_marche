@@ -433,13 +433,13 @@ body {
 }
 
 .mast__text {
-  max-width: 88ch;                 /* largeur poétique */
-  margin: 0 auto;              /* respiration verticale */
+  max-width: 88ch;                 
+  margin: 0 auto;              
   padding: 0 4ch;
 
   font-family: "Libre Baskerville", Georgia, "Times New Roman", serif;
   font-size: 1.45rem;
-  line-height: 2.1;                /* respiration */
+  line-height: 2.1;                
   letter-spacing: 0.015em;
 
   color: #2A2A2A;
@@ -447,7 +447,6 @@ body {
 
   white-space: pre-line;   
   
-  /* respecte les retours à la ligne */
   
   hyphens: none;
   word-break: normal;
