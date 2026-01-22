@@ -212,6 +212,66 @@ body {
   max-width: 88ch;
   padding: 0 0.5ch;
   text-align: left;
+.bus-section {
+    height: 300vh;
+    position: relative;
+}
+}
+
+.bus-track {
+    position: sticky;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 260px;
+}
+
+/* Text */
+.poem {
+    position: relative;
+    padding: 0 120px;
+    z-index: 2;
+}
+
+.line {
+    font-size: 1.6rem;
+    margin: 35px 0;
+    opacity: 0;
+    transition: opacity 0.1s linear;
+    color: #2b2b2b;
+    outline: 1px dashed blue;
+}
+
+/* Author-like positioning */
+.line-1 { text-align: left; }
+.line-2 { text-align: left; margin-left: 150px; }
+.line-3 { text-align: center; }
+.line-4 { text-align: right; margin-right: 150px; }
+.line-5 { text-align: right; }
+
+/* Bus */
+.bus {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+
+    width: 260px;
+    height: 60px;
+    background-color: #2b2b2b;
+    border-radius: 20px;
+
+    z-index: 1;
+    outline: 2px solid red;
+}
+
+.bus-section .poem {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.bus-section.active .poem {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 /* ===== ANIMATIONS ===== */
@@ -338,6 +398,15 @@ body {
   opacity: 0;
   animation: spanize 0.6s forwards;
   animation-delay: calc(var(--i) * 0.03s);
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(1em);
+}
+
+/* Animation déclenchée */
+.js-spanize.is-visible span {
+    animation: spanize 0.6s forwards;
+    animation-delay: calc(var(--i) * 0.05s);
 }
 
 @keyframes spanize {

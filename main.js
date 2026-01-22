@@ -1,11 +1,52 @@
-// ===== JS SPANIZE =====
+// =====================
+// JS SPANIZE
+// =====================
 document.querySelectorAll('.js-spanize').forEach(el => {
     const text = el.textContent;
     const spanned = text.split('').map((char, i) => `<span style="--i:${i}">${char}</span>`).join('');
     el.innerHTML = spanned;
 });
 
-// ===== CAROUSEL TASK =====
+// =====================
+// SPANIZE ON SCROLL
+// =====================
+const spanizeElements = document.querySelectorAll('.js-spanize');
+
+const observer = new IntersectionObserver(
+    (entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+
+                // Empêche de rejouer l'animation
+                if (el.dataset.spanized) return;
+
+                const text = el.textContent;
+                el.innerHTML = text
+                    .split('')
+                    .map((char, i) => {
+                        const safeChar = char === ' ' ? '&nbsp;' : char;
+                        return `<span style="--i:${i}">${safeChar}</span>`;
+                    })
+                    .join('');
+
+                el.dataset.spanized = 'true';
+                observer.unobserve(el);
+            }
+        });
+    },
+    {
+        threshold: 0.3
+    }
+);
+
+spanizeElements.forEach(el => observer.observe(el));
+
+
+
+// =====================
+// CAROUSEL TASK 
+// =====================
 const tasks = [
   'Nabosani te',
   'I remember.',
@@ -78,3 +119,42 @@ window.addEventListener('scroll', () => {
         sunText.style.opacity = progress > 0.6 ? 1 : 0;
     }
 });
+
+const bus = document.querySelector('.bus');
+const section = document.querySelector('.bus-section');
+const lines = document.querySelectorAll('.line');
+
+window.addEventListener('scroll', () => {
+    if (!bus || !section) return;
+
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+    const scrollY = window.scrollY;
+
+    const rawProgress =
+        (scrollY - sectionTop) /
+        (sectionHeight - window.innerHeight);
+
+    const progress = Math.min(Math.max(rawProgress, 0), 1);
+
+    const startX = -400;
+    const endX = window.innerWidth * 0.8;
+    const busX = startX + progress * (endX - startX);
+
+    bus.style.transform = `translateX(${busX}px) translateY(-50%)`;
+
+    const busRect = bus.getBoundingClientRect();
+
+    lines.forEach(line => {
+        const lineRect = line.getBoundingClientRect();
+
+        const overlaps =
+            busRect.left < lineRect.right &&
+            busRect.right > lineRect.left &&
+            busRect.top < lineRect.bottom &&
+            busRect.bottom > lineRect.top;
+
+        line.style.opacity = overlaps ? 1 : 0;
+    });
+});
+

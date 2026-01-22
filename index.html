@@ -14,24 +14,60 @@
 </head>
 <body>
 
-    <!-- INTRO = plein écran -->
-    <div class="container intro">
-        <div class="side-title">
-            <h1>Cette ville qui marche</h1>
-            <h3>Fed Alexandre</h3>
-        </div>
-        
-        <div id="hamburger" class="hamburglar is-closed">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
+<!-- ===== INTRO ===== -->
+<div class="container intro">
+    <div class="side-title">
+        <h1>Cette ville qui marche</h1>
+        <h3>Fed Alexandre</h3>
+    </div>
 
-        <div id="popup" class="popup">
-            <div class="popup-content">
-                <p>Krokmou and co</p>
+    <div id="hamburger" class="hamburglar is-closed">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <p>Krokmou and co</p>
+        </div>
+    </div>
+
+    <div id="task" class="task">Nabosani te.</div>
+    <i id="moveDown" class="fa fa-chevron-down fa-3x bounce"></i>
+</div>
+
+<!-- ===== MORNING TEXT ===== -->
+<section class="mast">
+    <header class="mast__header">
+        <p class="sun-text">C’est le matin</p>
+        <p class="mast__text js-spanize">
+            Montréal est à son quinzième septembre...
+            <br><br>
+            Rou-in Noranda ?
+            <br>Roune-Noranda ?
+            <br><br>
+            J’achète mon billet d’autobus, le cœur hâtif comme une allumette.
+        </p>
+    </header>
+</section>
+
+<!-- ===== BUS SCENE (ISOLATED) ===== -->
+<section id="bus-scene">
+    <section class="bus-section">
+        <div class="bus-track">
+            <div class="bus"></div>
+
+            <div class="poem">
+                <p class="line">Dans l’autobus, je t’imagine.</p>
+                <p class="line">Je t’invente.</p>
+                <p class="line">Je te rêve.</p>
+                <p class="line">Je t’écris.</p>
+                <p class="line">Je t’habite déjà.</p>
             </div>
         </div>
+    </section>
+</section>
 
         <div id="task" class="task">Nabosani te.</div>
         <i id="moveDown" class="fa fa-chevron-down fa-3x bounce"></i>
@@ -105,18 +141,16 @@
         Recuerdo por qué te llamo mi hogar.
         Je me souviens pourquoi je t’appelle chez moi.
 
-        </p>
-      </header>
-    </div>
-    <div class="mast">
-        <header class="mast__header"> 
+<!-- ===== AFTER BUS TEXT ===== -->
+<section class="mast">
+    <header class="mast__header">
         <p class="mast__text js-spanize">
-        Tu es cette ville-feu qui brûle d’imagination. Tu es cette ville qui refuse de cultiver des statues pour faire pousser des rêves. Des rêves ouverts sur le monde comme une étreinte. Malgré tes cent ans, tu as toujours ce goût d’avenir. Ce goût de te réinventer. Du minerai à l’art. Du cuivre à la poésie. De la roche au festival.
+            Tu es cette ville-feu qui brûle d’imagination...
         </p>
-      </header>
-    </div>
+    </header>
+</section>
 
-<!-- ===== SECTION JEU UNITY ===== -->
+<!-- ===== UNITY GAME ===== -->
 <section class="game-section">
     <iframe
         src="https://itch.io/embed-upload/16206707?color=333333"
@@ -125,11 +159,9 @@
     </iframe>
 </section>
 
-
-
-    <!-- Scripts -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <script src="main.js"></script>
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="main.js"></script>
 
 </body>
 </html>
