@@ -35,6 +35,11 @@ function changeTask() {
     }, 600);
 }
 
+// move section down one
+  $(document).on("click", "#moveDown", function () {
+    $.fn.fullpage.moveSectionDown();
+  });
+
 // initialisation
 if (task) {
     task.textContent = tasks[0];
