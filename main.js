@@ -71,6 +71,7 @@ window.addEventListener('scroll', () => {
     const g = 20 + progress * (215 - 20);
     const b = 30 + progress * (185 - 30);
 
+
     document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
 
     if (sunText) {
