@@ -157,4 +157,3 @@ window.addEventListener('scroll', () => {
         line.style.opacity = overlaps ? 1 : 0;
     });
 });
-
