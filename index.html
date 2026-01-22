@@ -1,23 +1,60 @@
 <!DOCTYPE html>
+<html lang="fr">
 <head>
-      <meta charset="UTF-8">
-    <title>TexteWeb</title>
+  <meta charset="UTF-8">
+  <title>TexteWeb</title>
 
+  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>TexteWeb</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+
 </head>
 <body>
 
-    <section class="intro">
-        <h1>La ville qui marche</h1>
-    </section>
+<!-- ===== INTRO ===== -->
+<div class="container intro">
+    <div class="side-title">
+        <h1>Cette ville qui marche</h1>
+        <h3>Fed Alexandre</h3>
+    </div>
 
-    <section class="text-section">
-        <p class="sun-text">
-            c’est le matin
+    <div id="hamburger" class="hamburglar is-closed">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <p>Krokmou and co</p>
+        </div>
+    </div>
+
+    <div id="task" class="task">Nabosani te.</div>
+    <i id="moveDown" class="fa fa-chevron-down fa-3x bounce"></i>
+</div>
+
+<!-- ===== MORNING TEXT ===== -->
+<section class="mast">
+    <header class="mast__header">
+        <p class="sun-text">C’est le matin</p>
+        <p class="mast__text js-spanize">
+            Montréal est à son quinzième septembre...
+            <br><br>
+            Rou-in Noranda ?
+            <br>Roune-Noranda ?
+            <br><br>
+            J’achète mon billet d’autobus, le cœur hâtif comme une allumette.
         </p>
-    </section>
-    
-  <section class="bus-section">
+    </header>
+</section>
+
+<!-- ===== BUS SCENE (ISOLATED) ===== -->
+<section id="bus-scene">
+    <section class="bus-section">
         <div class="bus-track">
             <div class="bus"></div>
 
@@ -30,9 +67,29 @@
             </div>
         </div>
     </section>
+</section>
 
+<!-- ===== AFTER BUS TEXT ===== -->
+<section class="mast">
+    <header class="mast__header">
+        <p class="mast__text js-spanize">
+            Tu es cette ville-feu qui brûle d’imagination...
+        </p>
+    </header>
+</section>
 
+<!-- ===== UNITY GAME ===== -->
+<section class="game-section">
+    <iframe
+        src="https://itch.io/embed-upload/16206707?color=333333"
+        allowfullscreen
+        loading="lazy">
+    </iframe>
+</section>
 
-    <script src="main.js"></script>
+<!-- Scripts -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="main.js"></script>
+
 </body>
 </html>
