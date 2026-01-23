@@ -279,10 +279,10 @@ body {
 .reveal-word {
   position: relative;
   display: inline-block;   /* keeps it inline with text */
-  color: black;
-  line-height: 1.15;  
+  color: inherit;
+  line-height: 1.15;
   overflow: hidden;
-  vertical-align: text-bottom;  /* aligns with surrounding text */
+  vertical-align: text-bottom;  
 }
 
 .reveal-word::after {
@@ -295,36 +295,47 @@ body {
   background-color: grey;
   border-radius: 8px;
   transition: transform 0.3s ease;
-  z-index: 2;              /* overlay is above text */
+  z-index: 2;              
 }
 
-/* Hover effect: rectangle slides up */
+
 .reveal-word:hover::after {
   transform: translateY(-100%);
 }
 
-/* Wave effect*/
+
 .wave-word {
   display: inline-block;
+  white-space: nowrap;
+  animation: none !important;
 }
+
 
 .wave-word span {
-  display: inline-block !important;
-  animation: wave 1.5s ease-in-out infinite !important;
+  display: inline-block ;
+  animation-name: wave ;
+  animation-duration: 1.5s ;
+  animation-timing-function: ease-in-out ;
+  animation-iteration-count: infinite ;
+  opacity: 1;
 }
 
-/* stagger letters manually */
-.wave-word span:nth-child(1) { animation-delay: 0s; }
-.wave-word span:nth-child(2) { animation-delay: 0.1s; }
-.wave-word span:nth-child(3) { animation-delay: 0.2s; }
-.wave-word span:nth-child(4) { animation-delay: 0.3s; }
-.wave-word span:nth-child(5) { animation-delay: 0.4s; }
-.wave-word span:nth-child(6) { animation-delay: 0.5s; }
-.wave-word span:nth-child(7) { animation-delay: 0.6s; }
+
+.wave-word span:nth-child(1) { animation-delay: 0s   !important; }
+.wave-word span:nth-child(2) { animation-delay: 0.1s !important; }
+.wave-word span:nth-child(3) { animation-delay: 0.2s !important; }
+.wave-word span:nth-child(4) { animation-delay: 0.3s !important; }
+.wave-word span:nth-child(5) { animation-delay: 0.4s !important; }
+.wave-word span:nth-child(6) { animation-delay: 0.5s !important; }
+.wave-word span:nth-child(7) { animation-delay: 0.6s !important; }
 
 @keyframes wave {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
 }
 
 /* ===== ANIMATIONS ===== */
