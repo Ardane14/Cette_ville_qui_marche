@@ -120,41 +120,89 @@ window.addEventListener('scroll', () => {
     }
 });
 
-const bus = document.querySelector('.bus');
-const section = document.querySelector('.bus-section');
-const lines = document.querySelectorAll('.line');
+// =====================
+// BUS
+// =====================
+const busScene = document.querySelector("#bus-scene");
+const bus = document.querySelector(".bus");
+const rows = [...document.querySelectorAll(".row")];
+const track = document.querySelector(".bus-track");
 
-window.addEventListener('scroll', () => {
-    if (!bus || !section) return;
+let ticking = false;
 
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.offsetHeight;
-    const scrollY = window.scrollY;
+/* positions animées */
+let currentX = 0;
+let targetX = 0;
+let currentY = 0;
+let targetY = 0;
 
-    const rawProgress =
-        (scrollY - sectionTop) /
-        (sectionHeight - window.innerHeight);
+const ease = 0.08;
 
-    const progress = Math.min(Math.max(rawProgress, 0), 1);
-
-    const startX = -400;
-    const endX = window.innerWidth * 0.8;
-    const busX = startX + progress * (endX - startX);
-
-    bus.style.transform = `translateX(${busX}px) translateY(-50%)`;
-
-    const busRect = bus.getBoundingClientRect();
-
-    lines.forEach(line => {
-        const lineRect = line.getBoundingClientRect();
-
-        const overlaps =
-            busRect.left < lineRect.right &&
-            busRect.right > lineRect.left &&
-            busRect.top < lineRect.bottom &&
-            busRect.bottom > lineRect.top;
-
-        line.style.opacity = overlaps ? 1 : 0;
-    });
+window.addEventListener("scroll", () => {
+  if (!ticking) {
+    requestAnimationFrame(updateBus);
+    ticking = true;
+  }
 });
+
+function updateBus() {
+  ticking = false;
+
+  const sceneRect = busScene.getBoundingClientRect();
+  const viewportHeight = window.innerHeight;
+
+  if (sceneRect.bottom < 0 || sceneRect.top > viewportHeight) return;
+
+  /* === progression scroll 0 → 1 === */
+  const centerTrigger = viewportHeight / 1.5;
+  const progress =
+    (centerTrigger - sceneRect.top) /
+    (sceneRect.height / 1.5);
+
+  const clamped = Math.min(Math.max(progress, 0), 1);
+
+  /* === position cible horizontale === */
+const startX = -bus.offsetWidth;
+const endX = track.offsetWidth;
+
+targetX = startX + clamped * (endX - startX);
+
+
+  /* === ligne active === */
+  const index = Math.min(
+    rows.length - 1,
+    Math.floor(clamped * rows.length)
+  );
+
+  const activeRow = rows[index];
+  if (activeRow) {
+    targetY =
+      activeRow.offsetTop +
+      activeRow.offsetHeight / 2 -
+      bus.offsetHeight / 2;
+  }
+
+  /* === interpolation (MAGIE) === */
+  currentX += (targetX - currentX) * ease;
+  currentY += (targetY - currentY) * ease;
+
+  bus.style.transform = `translate(${currentX}px, ${currentY}px)`;
+
+  /* === révélation du texte === */
+  const busCenterX =
+    bus.getBoundingClientRect().left +
+    bus.offsetWidth / 2;
+
+  rows.forEach(row => {
+    const text = row.querySelector(".bus_text");
+    const textRect = text.getBoundingClientRect();
+
+    const passed = busCenterX > textRect.left;
+
+    row.classList.toggle("is-visible", passed);
+  });
+
+  requestAnimationFrame(updateBus);
+}
+
 
