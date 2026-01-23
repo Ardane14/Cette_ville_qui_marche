@@ -469,7 +469,9 @@ body {
   }
 }
 
-
+/* ==================================================
+   Animation texte masqué
+================================================== */
 
 .mask {
     max-width: 88ch;                 
@@ -509,7 +511,71 @@ body {
     
 }
 
+/* ==================================================
+   Animation panneau Rouyn-Noranda
+================================================== */
 
+@keyframes lights {
+  0% {
+    color: hsl(35, 60%, 90%); /* ivoire lumineux */
+    text-shadow:
+      0 0 1em hsla(5, 85%, 45%, 0.35),     /* écarlate */
+      0 0 0.125em hsla(8, 90%, 40%, 0.4),  /* carmin */
+      -1em -0.125em 0.5em hsla(38, 85%, 50%, 0), /* or brûlé */
+      1em 0.125em 0.5em hsla(18, 60%, 30%, 0);   /* brun chaud */
+  }
+
+  30% { 
+    color: hsl(34, 65%, 95%);
+    text-shadow:
+      0 0 1.2em hsla(5, 85%, 45%, 0.6),
+      0 0 0.2em hsla(8, 90%, 40%, 0.6),
+      -0.5em -0.125em 0.35em hsla(38, 85%, 50%, 0.35),
+      0.5em 0.125em 0.35em hsla(18, 60%, 30%, 0.45);
+  }
+
+  40% { 
+    color: hsl(33, 70%, 97%);
+    text-shadow:
+      0 0 1.4em hsla(4, 90%, 48%, 0.65),
+      0 0 0.25em hsla(7, 95%, 42%, 0.65),
+      -0.25em -0.125em 0.25em hsla(40, 90%, 55%, 0.4),
+      0.25em 0.125em 0.25em hsla(20, 65%, 32%, 0.5);
+  }
+
+  70% {
+    color: hsl(34, 65%, 95%);
+    text-shadow:
+      0 0 1.2em hsla(5, 85%, 45%, 0.6),
+      0 0 0.2em hsla(8, 90%, 40%, 0.6),
+      0.5em -0.125em 0.35em hsla(38, 85%, 50%, 0.35),
+      -0.5em 0.125em 0.35em hsla(18, 60%, 30%, 0.45);
+  }
+
+  100% {
+    color: hsl(35, 60%, 90%);
+    text-shadow:
+      0 0 1em hsla(5, 85%, 45%, 0.35),
+      0 0 0.125em hsla(8, 90%, 40%, 0.4),
+      1em -0.125em 0.5em hsla(38, 85%, 50%, 0),
+      -1em 0.125em 0.5em hsla(18, 60%, 30%, 0);
+  }
+}
+
+
+
+.city-night {
+  max-width: 88ch;                 
+  margin: 0 auto;              
+  padding: 0 8ch;
+
+  font-family: "Libre Baskerville", Georgia, "Times New Roman", serif;
+  font-size: 2.45rem;
+  line-height: 2.1;                
+  letter-spacing: 0.015em;
+  color: hsl(230, 100%, 95%);
+  animation: lights 5s 750ms linear infinite;
+}
 
 @keyframes animate-background {
     0% {
@@ -519,6 +585,7 @@ body {
         background-position: 100% 50%;
     }
 }
+
 
 
 /* ==================================================
