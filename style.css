@@ -448,6 +448,55 @@ body {
 
 
 
+.mask {
+    max-width: 88ch;                 
+  margin: 0 auto;              
+  padding: 0 4ch;
+
+  font-family: "Libre Baskerville", Georgia, "Times New Roman", serif;
+  font-size: 1.45rem;
+  line-height: 2.1;                
+  letter-spacing: 0.015em;
+
+  
+
+    background-image: url('./images/Rouyn_Noranda.jpg');
+    background-size: 200%;
+    background-position: 0% 50%;
+
+    animation: animate-background 12s linear infinite alternate;
+
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.mask p {
+    margin: 0;
+}
+
+.mask p:nth-child(odd) {
+    text-align: right;
+    
+}
+
+.mask p:nth-child(even) {
+    text-align: left;
+    
+}
+
+
+
+@keyframes animate-background {
+    0% {
+        background-position: 0 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
 
 /* ==================================================
    4. Typography
@@ -484,6 +533,29 @@ body {
   animation: text-fade-up 1s ease both;
 }
 
+.mast__text-right {
+  max-width: 88ch;                 
+  margin: 0 auto;              
+  padding: 0 4ch;
+
+  font-family: "Libre Baskerville", Georgia, "Times New Roman", serif;
+  font-size: 1.45rem;
+  line-height: 2.1;                
+  letter-spacing: 0.015em;
+
+  color: #2A2A2A;
+  text-align: right;
+
+  white-space: pre-line;   
+  
+  
+  hyphens: none;
+  word-break: normal;
+  overflow-wrap: normal;
+
+
+  animation: text-fade-up 1s ease both;
+}
 
 
 
