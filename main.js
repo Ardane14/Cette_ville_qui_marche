@@ -219,9 +219,9 @@ window.addEventListener('scroll', () => {
 
     const progress = Math.min(scrollY / maxScroll, 1);
 
-    const r = 20 + progress * (230 - 20);
-    const g = 20 + progress * (215 - 20);
-    const b = 30 + progress * (185 - 30);
+    const r = 20 + progress * (247 - 20);
+    const g = 20 + progress * (243 - 20);
+    const b = 30 + progress * (235 - 30);
 
 
     document.body.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
