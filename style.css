@@ -48,9 +48,7 @@ body {
 
     -webkit-font-smoothing: antialiased; 
     -moz-osx-font-smoothing: grayscale; 
-    text-rendering: optimizeLegibility;
-
-    
+    text-rendering: optimizeLegibility;  
 }
 
 /* ===== INTRO (plein écran) ===== */
@@ -59,7 +57,6 @@ body {
     width: 100vw;
     color: white;
     position: relative;
-
 }
 
 .container {
@@ -95,38 +92,53 @@ body {
 }
 
 /* ===== CAROUSEL ===== */
-.task {
-    flex: 1;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    font-size: clamp(2rem, 5vw, 4rem);
-    font-weight: 300;
-
-    min-width: 12ch;
-    white-space: nowrap;
+.intro > .task-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  position: absolute;  /* centré dans le parent */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
+.sound-button {
+  position: absolute;
+  left: 25%;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  background: transparent; 
+  border: none;
+}
+
+.task {
+  font-size: clamp(2rem, 5vw, 4rem);
+  font-weight: 300;
+  white-space: nowrap;
+}
+
+/* animations texte */
 .task.pre-animation {
-    animation: from-bottom 0.6s forwards;
+  animation: from-bottom 0.6s forwards;
 }
 
 .task.post-animation {
-    animation: to-top 0.6s forwards;
+  animation: to-top 0.6s forwards;
 }
 
 @keyframes to-top {
-    from { transform: translateY(0); opacity: 1; }
-    to { transform: translateY(-10px); opacity: 0; }
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-10px); opacity: 0; }
 }
 
 @keyframes from-bottom {
-    from { transform: translateY(10px); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
 }
-
 
 /* ===== BUTTON CREDIT===== */
 .hamburglar {
