@@ -52,6 +52,7 @@ const tasks = [
   { text: 'Mwen sonje.', audio: 'wav/Fec_Creole_1.wav' },
   { text: 'Yfy yé capte.', audio: 'wav/MArtial_Noushi_1.wav' },
   { text: 'Lembro-me.', audio: 'wav/Raf_Portugais_1.wav' },
+  { text: 'Me kakye.', audio: 'wav/Japhet_Enzima_1.wav' },
   { text: 'Je me souviens.', audio: 'wav/Louanne_Francais_1.wav' },
 ];
 
