@@ -321,6 +321,7 @@ body {
 }
 
 
+
 .wave-word span:nth-child(1) { animation-delay: 0s   !important; }
 .wave-word span:nth-child(2) { animation-delay: 0.1s !important; }
 .wave-word span:nth-child(3) { animation-delay: 0.2s !important; }
@@ -337,6 +338,42 @@ body {
     transform: translateY(-6px);
   }
 }
+
+.bounce-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Base commune */
+.bounce-word span {
+  display: inline-block;
+  animation-name: bounce;
+  animation-timing-function: cubic-bezier(.4,0,.6,1);
+  animation-iteration-count: infinite;
+}
+
+/* Désynchronisation naturelle */
+.bounce-word span:nth-child(1)  { animation-duration: 1.3s; animation-delay: 0s; }
+.bounce-word span:nth-child(2)  { animation-duration: 1.8s; animation-delay: .2s; }
+.bounce-word span:nth-child(3)  { animation-duration: 1.5s; animation-delay: .1s; }
+.bounce-word span:nth-child(4)  { animation-duration: 1.9s; animation-delay: .3s; }
+.bounce-word span:nth-child(5)  { animation-duration: 1.4s; animation-delay: .15s; }
+.bounce-word span:nth-child(6)  { animation-duration: 2s;   animation-delay: .4s; }
+.bounce-word span:nth-child(7)  { animation-duration: 1.6s; animation-delay: .25s; }
+.bounce-word span:nth-child(8)  { animation-duration: 1.7s; animation-delay: .05s; }
+.bounce-word span:nth-child(9)  { animation-duration: 1.9s; animation-delay: .35s; }
+.bounce-word span:nth-child(10) { animation-duration: 1.5s; animation-delay: .2s; }
+.bounce-word span:nth-child(11) { animation-duration: 1.8s; animation-delay: .1s; }
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-0.35em);
+  }
+}
+
 
 /* ===== ANIMATIONS ===== */
 
@@ -651,6 +688,22 @@ body {
   display: inline;
 }
 
+.mast__inline-text2 {
+  max-width: 88ch;                 
+  margin: 0 auto;              
+  padding: 0 4ch;
+  
+  font-family: "Libre Baskerville", Georgia, "Times New Roman", serif;
+  font-size: 2.15rem;
+  line-height: 2.1;
+  letter-spacing: 0.015em;
+
+  color: #2A2A2A;
+  text-align: left;
+
+  white-space: normal;     /* 🔑 clé absolue */
+  display: inline;
+}
 
 
 /* ==================================================
