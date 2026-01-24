@@ -38,6 +38,12 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'Inconsolata';
+  src: url('https://ggayane.github.io/css-experiments/Inconsolata-VF.ttf');
+  font-weight: 275 900;
+  font-stretch: 50% 200%;
+}
 
 /* ===== BASE ===== */
 body {
@@ -407,6 +413,51 @@ body {
     to { transform: translateY(0); opacity: 1; }
 }
 
+
+
+.variable-line {
+  max-width: 88ch;
+  margin: 0 auto;
+  padding: 0 4ch;
+
+  font-family: 'Libre Baskerville', serif;
+  font-size: 1.45rem;
+  line-height: 2.1;
+  letter-spacing: 0.015em;
+
+  color: #2A2A2A;
+  text-align: left;
+
+  display: block; /* 🔑 OBLIGATOIRE */
+}
+
+
+.variable-word {
+  display: inline-block;
+  white-space: nowrap;
+  animation: pulse-weight 3s infinite cubic-bezier(0.17, 0.04, 0.04, 0.99);
+  font-family: 'Inconsolata', monospace;
+}
+
+.static-word {
+  font-variation-settings: "wght" 900, "wdth" 200;
+}
+
+
+
+  @keyframes pulse-weight {
+  0% {
+    font-variation-settings: "wght"275, "wdth"50;
+  }
+  50% {
+    font-variation-settings: "wght"700, "wdth"120;
+  }
+  100% {
+    font-variation-settings: "wght"275, "wdth"50;
+  }
+}
+
+
 /* Scroll down indicator (bouncing) */
 
 .fa-chevron-down {
@@ -496,7 +547,6 @@ body {
   display: flex;
   align-items: center;     /* centre verticalement */
   justify-content: center;
-  min-height: 100vh;
 }
 
 .mast__header {
