@@ -247,14 +247,16 @@ body {
 .bus {
   position: absolute;
   left: 0;
-  width: 120px;
-  height: 40px;
-  background: black;
+  width: 90%;
+  height: 90%;
+  background-image: url("images/BUS02.webp");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
   z-index: 10;
-
-  /* fluidité */
   will-change: transform, top;
 }
+
 
 .bus_text {
   opacity: 0 !important;
@@ -356,6 +358,26 @@ body {
     transform: translateY(-6px);
   }
 }
+
+/* Coeur qui bat */
+
+.heart-word {
+  display: inline-block; /* must have this */
+  animation: heartbeat 0.8s infinite;
+    font-family: "Libre Baskerville", Georgia, "Times New Roman", serif;
+  font-size: 1.45rem;
+  line-height: 2.1;
+  letter-spacing: 0.015em;
+
+  color: #2A2A2A;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25%, 75% { transform: scale(1.1); }
+  50% { transform: scale(1); }
+}
+
 
 .bounce-word {
   display: inline-block;

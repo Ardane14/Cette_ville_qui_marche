@@ -233,7 +233,7 @@ let targetX = 0;
 let currentY = 0;
 let targetY = 0;
 
-const ease = 0.08;
+const ease = 0.02;
 
 window.addEventListener("scroll", () => {
   if (!ticking) {
@@ -251,12 +251,16 @@ function updateBus() {
   if (sceneRect.bottom < 0 || sceneRect.top > viewportHeight) return;
 
   /* === progression scroll 0 → 1 === */
-  const centerTrigger = viewportHeight / 1.5;
-  const progress =
-    (centerTrigger - sceneRect.top) /
-    (sceneRect.height / 1.5);
+const scrollFactor = 1.5;
 
-  const clamped = Math.min(Math.max(progress, 0), 1);
+const start = viewportHeight * scrollFactor;
+const end = -sceneRect.height * scrollFactor;
+
+const progress =
+  (start - sceneRect.top) / (start - end);
+
+const clamped = Math.min(Math.max(progress, 0), 1);
+
 
   /* === position cible horizontale === */
 const startX = -bus.offsetWidth;
