@@ -241,14 +241,16 @@ body {
 .bus {
   position: absolute;
   left: 0;
-  width: 120px;
-  height: 40px;
-  background: black;
+  width: 90%;
+  height: 90%;
+  background-image: url("images/BUS02.webp");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
   z-index: 10;
-
-  /* fluidité */
   will-change: transform, top;
 }
+
 
 .bus_text {
   opacity: 0 !important;
