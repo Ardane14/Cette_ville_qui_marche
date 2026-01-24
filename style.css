@@ -353,6 +353,26 @@ body {
   }
 }
 
+/* Coeur qui bat */
+
+.heart-word {
+  display: inline-block; /* must have this */
+  animation: heartbeat 0.8s infinite;
+    font-family: "Libre Baskerville", Georgia, "Times New Roman", serif;
+  font-size: 1.45rem;
+  line-height: 2.1;
+  letter-spacing: 0.015em;
+
+  color: #2A2A2A;
+}
+
+@keyframes heartbeat {
+  0%, 100% { transform: scale(1); }
+  25%, 75% { transform: scale(1.1); }
+  50% { transform: scale(1); }
+}
+
+
 .bounce-word {
   display: inline-block;
   white-space: nowrap;
