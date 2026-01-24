@@ -738,6 +738,102 @@ body {
     }
 }
 
+.melting-line {
+  max-width: 88ch;
+  margin: 4rem auto;
+  padding: 0 4ch;
+
+  font-family: "Libre Baskerville", Georgia, serif;
+  font-size: 1.45rem;
+  line-height: 2.1;
+  letter-spacing: 0.015em;
+
+  color: #2A2A2A;
+  text-align: left;
+
+  display: block;
+}
+
+.melting-line {
+  max-width: 88ch;
+  margin: 4rem auto;
+  padding: 0 4ch;
+  text-align: left;
+}
+
+/* TEXTE PRINCIPAL */
+.melting-word {
+  position: relative;
+  display: inline-block;
+  white-space: nowrap;
+
+  font-family: "Libre Baskerville", serif;
+  font-size: 1.5rem;
+  line-height: 1.4;
+
+  background: linear-gradient(
+    90deg,
+    #ff6f61,
+    #ffbd44,
+    #ff6f61
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  animation: melt-core 3.5s infinite ease-in-out;
+}
+
+/* COULURES */
+.melting-word::before,
+.melting-word::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  background: linear-gradient(
+    90deg,
+    #ff6f61,
+    #ffbd44,
+    #ff6f61
+  );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  pointer-events: none;
+}
+
+/* 1ère couche */
+.melting-word::before {
+  transform: translateY(0.25em);
+  filter: blur(1.5px);
+  opacity: 0.45;
+}
+
+/* 2e couche */
+.melting-word::after {
+  transform: translateY(0.45em);
+  filter: blur(4px);
+  opacity: 0.25;
+}
+
+/* ANIMATION */
+@keyframes melt-core {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(0.4em);
+  }
+}
+
+
+
 
 
 /* ==================================================
