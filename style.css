@@ -547,6 +547,7 @@ body {
   display: flex;
   align-items: center;     /* centre verticalement */
   justify-content: center;
+
 }
 
 .mast__header {
