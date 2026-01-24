@@ -43,9 +43,8 @@ const observer = new IntersectionObserver(
 spanizeElements.forEach(el => observer.observe(el));
 
 // =====================
-// CAROUSEL TASK + AUDIO
+// DATA
 // =====================
-
 const tasks = [
   { text: 'Nabosani te.', audio: 'wav/Ningala_1.wav' },
   { text: 'I remember.', audio: 'wav/Raf_Anglais_1.wav' },
@@ -57,44 +56,63 @@ const tasks = [
   { text: 'Je me souviens.', audio: 'wav/Louanne_Francais_1.wav' },
 ];
 
+// =====================
+// ELEMENTS
+// =====================
 const task = document.getElementById('task');
 const intro = document.querySelector('.intro');
 const soundToggle = document.getElementById('soundToggle');
 
-// éléments SVG CodePen pour animation
+// SVG anims
 const a1 = document.getElementById("a1");
 const a2 = document.getElementById("a2");
 const aa1 = document.getElementById("aa1");
 const aa2 = document.getElementById("aa2");
 
+// =====================
+// ETAT GLOBAL
+// =====================
 let index = 0;
-let audio = null;
-let soundEnabled = false;   // audio désactivé par défaut
-let audioStarted = false;   // audio lancé seulement après clic
-let fadeInterval = null;    // interval pour fade
+let soundEnabled = false;
+let audioStarted = false;
+let isInIntro = true;
+
+const audio = new Audio();
+audio.volume = 0;
 
 // =====================
-// Initialisation bouton fermé
+// FADE
 // =====================
-if (soundToggle && a1 && a2 && aa1 && aa2) {
-  // le SVG démarre fermé
-  a2.setAttribute("d", "M 19 5 Q 24.75 12 19 19 M 15.5 8.5 Q 18.5 12 15.5 15.5");
-  a1.setAttribute("d", "M 22 9 Q 19 12 16 15 M 16 9 Q 19 12 22 15");
-  aa2.setAttribute("stroke", "#ffffff");
-  aa1.setAttribute("stroke", "#ffffff");
+let fading = false;
+
+function fadeTo(target) {
+  if (fading) return;
+  fading = true;
+
+  const step = () => {
+    const diff = target - audio.volume;
+    if (Math.abs(diff) < 0.01) {
+      audio.volume = target;
+      fading = false;
+      return;
+    }
+    audio.volume += diff * 0.1;
+    requestAnimationFrame(step);
+  };
+
+  step();
 }
 
 // =====================
-// Fonction pour jouer un task
+// CAROUSEL
 // =====================
 function playTask(i) {
   if (!task) return;
 
   const { text, audio: src } = tasks[i];
 
-  // animation sortie texte
   task.classList.remove('pre-animation', 'post-animation');
-  void task.offsetWidth; // trigger reflow
+  void task.offsetWidth;
   task.classList.add('post-animation');
 
   setTimeout(() => {
@@ -103,33 +121,21 @@ function playTask(i) {
     void task.offsetWidth;
     task.classList.add('pre-animation');
 
-    // audio seulement si activé
-    if (audioStarted && soundEnabled) {
-      if (audio) {
-        audio.pause();
-        audio.currentTime = 0;
-      }
-      audio = new Audio(src);
-      audio.volume = 1;
-      audio.loop = false;
-      audio.play().catch(() => console.log("Audio bloqué"));
-
-      audio.onended = () => {
-        index = (index + 1) % tasks.length;
-        playTask(index);
-      };
-    } else {
-      // avance carousel sans audio
-      setTimeout(() => {
-        index = (index + 1) % tasks.length;
-        playTask(index);
-      }, 1000);
+    if (soundEnabled && audioStarted) {
+      audio.src = src;
+      audio.currentTime = 0;
+      audio.play().catch(() => {});
     }
+
+    audio.onended = () => {
+      index = (index + 1) % tasks.length;
+      playTask(index);
+    };
   }, 600);
 }
 
 // =====================
-// Initialisation carousel
+// INIT
 // =====================
 if (task) {
   task.textContent = tasks[0].text;
@@ -138,62 +144,41 @@ if (task) {
 }
 
 // =====================
-// Bouton son simple style CodePen
+// BOUTON SON
 // =====================
-soundToggle.addEventListener('click', (event) => {
-  const toggleIcon = event.currentTarget;
-
+soundToggle.addEventListener('click', () => {
   if (!soundEnabled) {
-    // animation pour activer le son
-    toggleIcon.querySelector('#a1').beginElement();
-    toggleIcon.querySelector('#aa1').beginElement();
+    a1.beginElement();
+    aa1.beginElement();
   } else {
-    // animation pour fermer le son
-    toggleIcon.querySelector('#a2').beginElement();
-    toggleIcon.querySelector('#aa2').beginElement();
+    a2.beginElement();
+    aa2.beginElement();
   }
 
-  // changer état son réel
   soundEnabled = !soundEnabled;
 
-  // activer audio seulement après premier clic
   if (!audioStarted) {
     audioStarted = true;
-    if (tasks[index]) playTask(index);
+    playTask(index);
   }
 
-  if (audio) audio.volume = soundEnabled ? 1 : 0;
+  fadeTo(soundEnabled && isInIntro ? 1 : 0);
 });
 
 // =====================
-// Fade audio sur scroll
+// INTERSECTION OBSERVER
 // =====================
-function handleFade() {
-  if (!audio || !soundEnabled) return;
+const audioObserver = new IntersectionObserver(
+  ([entry]) => {
+    isInIntro = entry.isIntersecting;
 
-  const rect = intro.getBoundingClientRect();
-  const isInIntro = rect.bottom > 0 && rect.top < window.innerHeight;
+    if (!soundEnabled) return;
+    fadeTo(isInIntro ? 1 : 0);
+  },
+  { threshold: 0.2 }
+);
 
-  if (fadeInterval) clearInterval(fadeInterval);
-
-  fadeInterval = setInterval(() => {
-    if (!audio) return clearInterval(fadeInterval);
-
-    const targetVolume = isInIntro ? 1 : 0;
-    const diff = targetVolume - audio.volume;
-
-    if (Math.abs(diff) < 0.01) {
-      audio.volume = targetVolume;
-      clearInterval(fadeInterval);
-    } else {
-      audio.volume += diff * 0.1; // fade smooth
-    }
-  }, 50);
-}
-
-window.addEventListener("scroll", handleFade);
-
-
+audioObserver.observe(intro);
 
 // =====================
 // HAMBURGER / POPUP
